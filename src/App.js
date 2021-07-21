@@ -8,9 +8,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    fetch(
-      "http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D"
-    ).then((res) => {
+    fetch("https://60eedf19eb4c0a0017bf468a.mockapi.io/data").then((res) => {
       res.json().then((result) => {
         setLoading(false);
         setDataList(result);
@@ -47,11 +45,11 @@ function App() {
                 <table>
                   <thead>
                     <tr>
-                      <th class="column1">Id</th>
-                      <th class="column2">FirstName</th>
-                      <th class="column3">LastName</th>
-                      <th class="column4">Email</th>
-                      <th class="column5">Phone</th>
+                      <th className="column1">Id</th>
+                      <th className="column2">FirstName</th>
+                      <th className="column3">LastName</th>
+                      <th className="column4">Email</th>
+                      <th className="column5">Phone</th>
                     </tr>
                   </thead>
                 </table>
@@ -62,17 +60,17 @@ function App() {
                   <tbody>
                     {newDataList.map((data) => (
                       <tr
-                        class={`data-row ${
+                        className={`data-row ${
                           activeRow && activeRow.id === data.id && "active"
                         }`}
                         key={data.id}
                         onClick={() => setActiveRow(data)}
                       >
-                        <td class="column1">{data.id}</td>
-                        <td class="column2">{data.firstName}</td>
-                        <td class="column3">{data.lastName}</td>
-                        <td class="column4">{data.email}</td>
-                        <td class="column5">{data.phone}</td>
+                        <td className="column1">{data.id}</td>
+                        <td className="column2">{data.firstName}</td>
+                        <td className="column3">{data.lastName}</td>
+                        <td className="column4">{data.email}</td>
+                        <td className="column5">{data.phone}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -92,9 +90,12 @@ function App() {
                 </div>
                 <div>
                   <b>Description: </b>
-                  <textarea cols="50" rows="5" readonly>
-                    {activeRow.description}
-                  </textarea>
+                  <textarea
+                    cols="50"
+                    rows="5"
+                    readOnly
+                    value={activeRow.description}
+                  ></textarea>
                 </div>
                 <div>
                   <b>Address:</b>
